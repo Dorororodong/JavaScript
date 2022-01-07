@@ -109,3 +109,39 @@ player2.sayHello('muyaho');
 
 ---
 
+### Conditionals
+
+```javascript
+const age1 = prompt('How old are you?');
+const age2 = parseInt(prompt('How old are you?'));
+// 구식이라 쓰지 않음(prompt), 디자인 변경도 안되고 딱딱함!
+
+console.log(age2);
+
+console.log(typeof age1);
+
+console.log(age1, parseInt(age1));
+
+console.log(isNaN(age1));
+
+if (isNaN(age1) || age1 < 0) {
+  console.log('Please write a real positive number');
+} else if (age1 < 18) {
+  console.log('You are too young!');
+} else if (age1 >= 18 && age1 <= 50) {
+  console.log('You can drink!');
+} else {
+  console.log("You can't drink!");
+}
+
+// === (같다면)
+// !== (같지 않다면)
+```
+
+---
+
+### The Document Object
+
+![image-20220108011324342](Vanilla JavaScript.assets/image-20220108011324342.png)
+
+![image-20220108011633088](Vanilla JavaScript.assets/image-20220108011633088.png)
