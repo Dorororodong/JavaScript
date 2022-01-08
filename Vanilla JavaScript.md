@@ -13,6 +13,9 @@ const (변하지 않는)
 ```javascript
 const myName = 'June';
 // camelCase
+
+// _는 파이썬 (snake_case)
+// my_name = 'June'
 ```
 
 ---
@@ -145,3 +148,141 @@ if (isNaN(age1) || age1 < 0) {
 ![image-20220108011324342](Vanilla JavaScript.assets/image-20220108011324342.png)
 
 ![image-20220108011633088](Vanilla JavaScript.assets/image-20220108011633088.png)
+
+---
+
+### HTML in Javascript / Searching For Elements
+
+```javascript
+const title = document.getElementById("title");
+console.log(title);
+console.dir(title);
+// dir은 해당하는 것의 내부구조를 전부다 보여줌! [사용가능한 event도 보여줌!]
+
+title.innerText = "Got You!";
+
+console.log(title.id);
+console.log(title.className);
+
+
+ const hellos = document.getElementsByClassName('hello');
+ console.log(hellos);
+
+ const title = document.getElementsByTagName("h1");
+ console.log(title);
+
+
+const title = document.querySelector(".hello h1");
+// const title = document.querySelector("div h1");
+// 동일한 구조가 있어도 첫번째 1개만 딱 가져온다!
+
+const title2 = document.querySelectorAll(".hello h1");
+// 다 들고옴
+
+console.log(title);
+console.log(title2);
+
+const title = document.querySelector("#hello");
+const title = document.getElementById("hello");
+// 위의 2개가 같음
+
+
+const title = document.querySelector("div.hello:first-child h1");
+console.dir(title);
+title.style.color = 'blue';
+```
+
+![image-20220108151728754](Vanilla JavaScript.assets/image-20220108151728754.png)
+
+---
+
+### Events (MDN 문서!) / Css in JavaScript
+
+```javascript
+const h1 = document.querySelector("div.hello:first-child h1");
+
+console.dir(title);
+// event 확인 가능 (사용가능한 전부)
+
+function handleTitleClick() {
+  console.log("h1 was clicked!");
+  h1.style.color = "blue";
+}
+
+function handleMouseEnter() {
+  h1.innerText = "mouse is here!"
+}
+
+function handleMouseLeave() {
+  h1.innerText = "mouse is gone!"
+}
+
+function handleWindowResize() {
+  document.body.style.backgroundColor = "tomato";
+}
+
+function handleWindowCopy() {
+  alert("Don't do that!")  
+}
+
+
+h1.addEventListener("click", handleTitleClick);
+// h1.onclick = handleTitleClick;
+// 2개가 같음
+
+h1.addEventListener("mouseenter", handleMouseEnter);
+h1.addEventListener("mouseleave", handleMouseLeave);
+
+window.addEventListener("resize", handleWindowResize);
+window.addEventListener("copy", handleWindowCopy);
+
+// .removeEventListener
+// MDN - window - events
+
+
+
+
+const h1 = document.querySelector("div.hello:first-child h1");
+
+function handleTitleClick() {
+  const currentColor = h1.style.color;
+  let newColor;
+  if (currentColor === "blue") {
+    newColor = "tomato";
+  } else {
+    newColor = "blue";
+  }
+  h1.style.color = newColor;
+}
+
+h1.addEventListener("click", handleTitleClick);
+
+
+
+
+const h1 = document.querySelector("div.hello:first-child h1");
+
+function handleTitleClick() {
+  const clickedClass = "clicked";
+  if (h1.classList.contains(clickedClass)) {
+    h1.classList.remove(clickedClass);
+  } else {
+    h1.classList.add(clickedClass);
+  }
+}
+
+h1.addEventListener("click", handleTitleClick);
+
+
+// 위와 같은데 간단(toggle)
+const h1 = document.querySelector("div.hello:first-child h1");
+
+function handleTitleClick() {
+  h1.classList.toggle("clicked")
+}
+
+h1.addEventListener("click", handleTitleClick);
+```
+
+![image-20220108154216512](Vanilla JavaScript.assets/image-20220108154216512.png)
+
